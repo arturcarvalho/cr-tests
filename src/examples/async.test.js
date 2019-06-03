@@ -33,6 +33,12 @@ describe("\nasync test suite", () => {
     });
   });
 
+  it("checks same promise with resolves()", () => {
+    return expect(promiseBananas()).resolves.toBe("bananas");
+  });
+
+  // ERRORS
+
   // fetch error
   function promiseError() {
     return new Promise((_, reject) => {
@@ -42,10 +48,6 @@ describe("\nasync test suite", () => {
       }, 0);
     });
   }
-
-  it("checks same promise with resolves()", () => {
-    return expect(promiseBananas()).resolves.toBe("bananas");
-  });
 
   it("needs to do 2 checks (aka assertions)", () => {
     expect.assertions(2);
@@ -61,6 +63,35 @@ describe("\nasync test suite", () => {
       expect(e).toBe("BIG error");
     });
   });
+
+  it("catches error with rejects", () => {
+    expect.assertions(1); // Do I need this? Maybe not.
+    return expect(promiseError()).rejects.toBe("BIG error");
+  });
+
+  // ASYNC AWAIT
+  it("checks the data is bananas with async await", async () => {
+    expect.assertions(1);
+    const data = await promiseBananas();
+    expect(data).toBe("bananas");
+  });
+
+  it("catches error with async await", async () => {
+    expect.assertions(1);
+    try {
+      await promiseError();
+    } catch (e) {
+      expect(e).toBe("BIG error");
+    }
+  });
+
+  it("checks the data is bananas with async await + resolves", async () => {
+    await expect(promiseBananas()).resolves.toBe("bananas");
+  });
+
+  it("catches error with async await + rejects", async () => {
+    await expect(promiseError()).rejects.toBe("BIG error");
+  });
 });
 
 /**
@@ -70,17 +101,17 @@ describe("\nasync test suite", () => {
  *
  */
 describe("\nDON'T DO THIS", () => {
-  function fetchBacon(fn) {
+  function fetchBananas(fn) {
     setTimeout(() => {
-      fn("fishies");
+      fn("bananas");
     }, 0);
   }
 
-  it("it doesn't fail inside describe.", () => {
+  it("doesn't fail inside describe.", () => {
     function callback(data) {
-      expect(data).toBe("bacon");
+      expect(data).toBe("oranges"); // BANANAS ARE NOT ORANGES
     }
 
-    fetchBacon(callback);
+    fetchBananas(callback);
   });
 });
