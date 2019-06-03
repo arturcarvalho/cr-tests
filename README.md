@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Based on create-react-app.
 
-## Available Scripts
+# Start
+> yarn test --verbose
 
-In the project directory, you can run:
 
-### `npm start`
+# Docs
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## enzyme
+https://jestjs.io/docs/en/tutorial-react
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+yarn add enzyme enzyme-adapter-react-16 --dev
 
-### `npm test`
+## manual mocks
+https://jestjs.io/docs/en/manual-mocks
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## async
 
-### `npm run build`
+https://jestjs.io/docs/en/tutorial-async
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## timers
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+https://jestjs.io/docs/en/timer-mocks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Questions
 
-### `npm run eject`
+## toBe vs ToEqual
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`toBe` does === and tests identity, not value equality.
+https://github.com/facebook/jest/issues/145#issuecomment-58287835
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How to see all tests description?
+Use the flag **--verbose** like this:
+> yarn test --verbose
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Where to put tests?
+Inside files with .test.js or spec.js in their name, or inside files .js inside folders called __tests__.
+Regex: "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$"
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## What is `describe`?
+It's a way to group tests. If you use `before` and `after` inside a `describe`, it will only apply to tests inside the describe block. 
 
-## Learn More
+Each describe will appear as a different Test Suite when running the tests.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Difference between "it" and "test"?
+None, `test` is an alias of `it`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+https://jestjs.io/docs/en/api.html#testname-fn-timeout
