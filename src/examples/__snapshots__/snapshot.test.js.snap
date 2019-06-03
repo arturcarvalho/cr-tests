@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot suite matches generated values in snapshot using asymmetric matchers 1`] = `
+Object {
+  "createdAt": Any<Date>,
+  "rand": Any<Number>,
+}
+`;
+
+exports[`snapshot suite renders correctly 1`] = `
+<span
+  href="som.url"
+  onClick={[Function]}
+/>
+`;
